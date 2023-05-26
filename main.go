@@ -27,9 +27,9 @@ func main() {
 	mqttConnect()
 	defer client.Disconnect(250) //注册销毁
 	wg.Add(1)
-	go mqttSubScribe("topic/test")
-	wg.Add(1)
-	go testPublish()
+	go mqttSubScribe("golang-mqtt/test")
+	// wg.Add(1)
+	// go testPublish()
 	wg.Wait()
 }
 func mqttConnect() {
