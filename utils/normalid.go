@@ -2,9 +2,10 @@ package utils
 
 import (
 	"errors"
-	"https://github.com/1319479809/mqtt_test/utils/slog"
 	"sync"
 	"time"
+
+	"github.com/1319479809/mqtt_test/utils/slog"
 )
 
 var (

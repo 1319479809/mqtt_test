@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"https://github.com/1319479809/mqtt_test/device"
-	"https://github.com/1319479809/mqtt_test/utils/slog"
 	"log"
 	"math/rand"
 	"net/http"
+
+	"github.com/1319479809/mqtt_test/device"
+	"github.com/1319479809/mqtt_test/utils/slog"
 
 	"time"
 
