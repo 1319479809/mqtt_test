@@ -1,0 +1,12 @@
+<xml>
+    <AppId>123454</AppId>
+    <CreateTime>1535442403</CreateTime>
+    <InfoType>notify_third_fastregisterbetaapp</InfoType>
+    <appid>appid123</appid>
+    <status>0</status>
+    <msg>OK</msg>
+    <info>
+    <unique_id>123456</unique_id>
+    <name>小程序名称</name>
+    </info>
+</xml>

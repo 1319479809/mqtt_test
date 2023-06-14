@@ -1,12 +1,16 @@
 package main
 
 import (
+	"encoding/xml"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 
 	"github.com/1319479809/mqtt_test/device"
+	"github.com/1319479809/mqtt_test/utils"
 	"github.com/1319479809/mqtt_test/utils/slog"
 
 	"time"
@@ -108,15 +112,41 @@ func GetRateUserValue(STime int64, Type int, Rate int) (int, error) {
 	return 0, nil
 
 }
+
+func XmlTest() {
+	file, err := os.Open("test.xml") // For read access.
+	if err != nil {
+		fmt.Printf("error: %v", err)
+		return
+	}
+	defer file.Close()
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		fmt.Printf("error: %v", err)
+		return
+	}
+	v := utils.XRegisterBetaMiniprogram{}
+	err = xml.Unmarshal(data, &v)
+	if err != nil {
+		log.Println("err=", err)
+	}
+	log.Println("v=", v)
+
+	res, err := utils.TestEvent(string(data))
+	if err != nil {
+		log.Println("err=", err)
+	}
+	log.Println("res=", res)
+}
 func main() {
 
 	log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
 	slog.CpInfo("test", "test")
 	GetRateUserValue(0, 1, 1)
-
 	//getOutBoundTransferAdvisor()
 	//r := gin.Default()
 	//initDevice(r)
+	XmlTest()
 	log.Println("end=====================")
 }
 
