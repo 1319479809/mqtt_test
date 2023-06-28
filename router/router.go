@@ -9,7 +9,7 @@ import (
 )
 
 // 门禁设备
-func initDevice(r *gin.Engine) {
+func InitDeviceHttp(r *gin.Engine) {
 	v1 := r.Group("/device")
 	{
 		v1.POST("/control", device.DeviceControl) //远程控制设备

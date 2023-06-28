@@ -10,6 +10,7 @@ import (
 
 	"time"
 
+	"github.com/1319479809/mqtt_test/router"
 	"github.com/1319479809/mqtt_test/utils"
 	"github.com/1319479809/mqtt_test/utils/slog"
 
@@ -180,7 +181,7 @@ func main() {
 	GetRateUserValue(0, 1, 1)
 	//getOutBoundTransferAdvisor()
 	r := gin.Default()
-	router.initDevice(r)
+	router.InitDeviceHttp(r)
 	XmlTest()
 	log.Println("end=====================")
 }
