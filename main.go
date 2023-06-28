@@ -17,6 +17,12 @@ import (
 
 // http://192.168.2.19:80/sendTest
 
+// 测试
+func test1() {
+	test_test.GetRateUserValue(0, 1, 1) //测试日期
+	test_test.XmlTest()                 //测试xml解析
+	test_test.TestRedis()               //测试连接redis
+}
 func main() {
 
 	log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
@@ -27,11 +33,15 @@ func main() {
 		gin.SetMode(gin.DebugMode)
 	}
 	slog.CpInfo("test", "test")
-	test_test.GetRateUserValue(0, 1, 1)
+
+	test1()
 	//getOutBoundTransferAdvisor()
 	r := gin.Default()
 	router.InitDeviceHttp(r)
-	test_test.XmlTest()
+	err := r.Run(":" + utils.Cfg.Section("").Key("httpport").String())
+	if err != nil {
+		slog.Error("Start Server", err)
+	}
 	log.Println("end=====================")
 }
 

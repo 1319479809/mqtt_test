@@ -36,5 +36,5 @@ func InitDeviceHttp(r *gin.Engine) {
 			"error":  "success",
 		})
 	})
-	r.Run(":8086")
+	//r.Run(":8086")
 }

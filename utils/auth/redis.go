@@ -6,7 +6,6 @@ import (
 	"encoding/hex"
 	"time"
 
-	"github.com/1319479809/mqtt_test/utils"
 	"github.com/go-redis/redis/v8"
 )
 
@@ -22,63 +21,7 @@ var (
 )
 
 func init() {
-	initRedisToken()
-	initRedisAuth()
 	initRedisCache()
-}
-
-func initRedisToken() {
-	redisAuthConf, err := utils.Cfg.GetSection("redis_token")
-	if err != nil {
-		panic("Redis 配置文件错误")
-	}
-
-	redisAddr := redisAuthConf.Key("addr").String()
-	if redisAddr == "" {
-		redisAddr = ":6379"
-	}
-	password := redisAuthConf.Key("password").String()
-
-	db, _ := redisAuthConf.Key("db").Int()
-	options := redis.Options{
-		Addr:     redisAddr,
-		Password: password,
-		DB:       db,
-	}
-
-	rTokenClient = redis.NewClient(&options)
-	_, err = rTokenClient.Ping(ctx).Result()
-	if err != nil {
-		panic(err)
-	}
-
-}
-
-func initRedisAuth() {
-	redisAuthConf, err := utils.Cfg.GetSection("redis_auth")
-	if err != nil {
-		panic("Redis 配置文件错误")
-	}
-
-	redisAddr := redisAuthConf.Key("addr").String()
-	if redisAddr == "" {
-		redisAddr = ":6379"
-	}
-	password := redisAuthConf.Key("password").String()
-
-	db, _ := redisAuthConf.Key("db").Int()
-	options := redis.Options{
-		Addr:     redisAddr,
-		Password: password,
-		DB:       db,
-	}
-
-	rAuthClient = redis.NewClient(&options)
-	_, err = rAuthClient.Ping(ctx).Result()
-	if err != nil {
-		panic(err)
-	}
-
 }
 
 // EXPIRESIN 会话有效时间

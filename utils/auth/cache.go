@@ -2,6 +2,7 @@ package auth
 
 import (
 	"encoding/json"
+	"log"
 	"time"
 
 	"github.com/1319479809/mqtt_test/utils"
@@ -36,6 +37,7 @@ func initRedisCache() {
 		DB:       db,
 	}
 
+	log.Println("redis cache options: ", options.Addr, " Password:", options.Password, " DB:", options.DB)
 	rCacheClient = redis.NewClient(&options)
 	_, err = rCacheClient.Ping(ctx).Result()
 	if err != nil {
