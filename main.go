@@ -22,6 +22,7 @@ func test1() {
 	test_test.GetRateUserValue(0, 1, 1) //测试日期
 	test_test.XmlTest()                 //测试xml解析
 	test_test.TestRedis()               //测试连接redis
+	test_test.TestDb()                  //测试连接数据库
 }
 func main() {
 

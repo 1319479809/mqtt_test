@@ -47,3 +47,10 @@
 {"level":"info","file":"D:/bing/mqtt_test/main.go","line":35,"msg":"test","time":"2023-06-28T16:46:19+08:00","message":"\"test\""}
 {"level":"info","file":"D:/bing/mqtt_test/main.go","line":35,"msg":"test","time":"2023-06-28T16:46:22+08:00","message":"\"test\""}
 {"level":"info","file":"D:/bing/mqtt_test/main.go","line":35,"msg":"test","time":"2023-06-28T16:46:24+08:00","message":"\"test\""}
+{"level":"info","file":"D:/bing/mqtt_test/main.go","line":35,"msg":"test","time":"2023-06-28T16:55:15+08:00","message":"\"test\""}
+{"level":"info","file":"D:/bing/mqtt_test/main.go","line":35,"msg":"test","time":"2023-06-28T17:24:37+08:00","message":"\"test\""}
+{"level":"info","file":"D:/bing/mqtt_test/main.go","line":35,"msg":"test","time":"2023-06-28T17:25:39+08:00","message":"\"test\""}
+{"level":"info","file":"D:/bing/mqtt_test/main.go","line":35,"msg":"test","time":"2023-06-28T17:27:46+08:00","message":"\"test\""}
+{"level":"info","file":"D:/bing/mqtt_test/main.go","line":35,"msg":"test","time":"2023-06-28T17:27:58+08:00","message":"\"test\""}
+{"level":"info","file":"D:/bing/mqtt_test/main.go","line":36,"msg":"test","time":"2023-06-28T17:28:27+08:00","message":"\"test\""}
+{"level":"info","file":"D:/bing/mqtt_test/utils/db/global_mqqt_user.go","line":51,"business_id":1001,"name":"sys","method":"创建","func":"mqtt用户","time":"2023-06-28T17:28:28+08:00"}
