@@ -6,14 +6,12 @@ import (
 	"io/ioutil"
 	"log"
 	"math/rand"
-	"net/http"
 	"os"
 
-	"github.com/1319479809/mqtt_test/device"
+	"time"
+
 	"github.com/1319479809/mqtt_test/utils"
 	"github.com/1319479809/mqtt_test/utils/slog"
-
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -113,6 +111,7 @@ func GetRateUserValue(STime int64, Type int, Rate int) (int, error) {
 
 }
 
+// 解析xml
 func XmlTest() {
 	file, err := os.Open("test.xml") // For read access.
 	if err != nil {
@@ -125,59 +124,65 @@ func XmlTest() {
 		fmt.Printf("error: %v", err)
 		return
 	}
-	v := utils.XRegisterBetaMiniprogram{}
-	err = xml.Unmarshal(data, &v)
-	if err != nil {
-		log.Println("err=", err)
-	}
-	log.Println("v=", v)
 
-	res, err := utils.TestEvent(string(data))
+	var adata0 utils.XRegister
+	var info1 utils.Info1
+	adata0.Info = info1
+	err = xml.Unmarshal(data, &adata0)
 	if err != nil {
 		log.Println("err=", err)
 	}
-	log.Println("res=", res)
+	log.Println("adata01=", adata0)
+
+	var adata02 utils.XRegister
+	var info2 utils.Info2
+	adata02.Info = info2
+	err = xml.Unmarshal(data, &adata02)
+	if err != nil {
+		log.Println("err=", err)
+	}
+	log.Println("adata02=", adata02)
+	//info := utils.XRegister.Info
+
+	var adata utils.XRegisterBetaMiniprogram
+	err = xml.Unmarshal(data, &adata)
+	if err != nil {
+		log.Println("err=", err)
+	}
+	info := adata.Info
+	log.Println("info=", info)
+	log.Println("info=", info.UniqueId)
+	log.Println("adata=", adata)
+
+	var adata2 utils.XRegisterBetaMiniprogram2
+	err = xml.Unmarshal(data, &adata2)
+	if err != nil {
+		log.Println("err=", err)
+	}
+	log.Println("adata2=", adata2)
+
+	// res, err := utils.TestEvent(string(data))
+	// if err != nil {
+	// 	log.Println("err=", err)
+	// }
+	// log.Println("res=", res)
 }
 func main() {
 
 	log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
+
+	if utils.Cfg.Section("").Key("runmode").String() == "prod" {
+		gin.SetMode(gin.ReleaseMode)
+	} else {
+		gin.SetMode(gin.DebugMode)
+	}
 	slog.CpInfo("test", "test")
 	GetRateUserValue(0, 1, 1)
 	//getOutBoundTransferAdvisor()
-	//r := gin.Default()
-	//initDevice(r)
+	r := gin.Default()
+	router.initDevice(r)
 	XmlTest()
 	log.Println("end=====================")
-}
-
-func initDevice(r *gin.Engine) {
-	v1 := r.Group("/device")
-	{
-		v1.POST("/control", device.DeviceControl) //远程控制设备
-	}
-	v2 := r.Group("/person")
-	{
-		v2.POST("/create", device.PersonCreate)               //人员注册.
-		v2.POST("/delete", device.PersonDelete)               //人员删除
-		v2.POST("/find", device.PersonFind)                   //人员查询
-		v2.POST("/whiteListSync", device.PersonWhiteListSync) //同步白名单
-		v2.POST("/whiteListFind", device.PersonWhiteListFind) //查询白名单
-		v2.POST("/registerFeats", device.PersonRegisterFeats) //人员注册（feature）
-
-	}
-	v3 := r.Group("/v1")
-	{
-		v3.POST("/post", device.SendPost)
-	}
-	//定义默认路由
-	r.NoRoute(func(c *gin.Context) {
-		fmt.Println("test4")
-		c.JSON(http.StatusNotFound, gin.H{
-			"status": 0,
-			"error":  "success",
-		})
-	})
-	r.Run(":8086")
 }
 
 // [{user_id:xx,Weights：xxx}]

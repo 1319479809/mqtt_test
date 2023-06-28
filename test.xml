@@ -6,7 +6,11 @@
     <status>0</status>
     <msg>OK</msg>
     <info>
-    <unique_id>123456</unique_id>
-    <name>小程序名称</name>
+    <name>企业名称</name>
+    <code>企业代码</code>
+    <code_type>1</code_type>
+    <legal_persona_wechat>法人微信号</legal_persona_wechat>
+    <legal_persona_name>法人姓名</legal_persona_name>
+    <component_phone>第三方联系电话</component_phone>
     </info>
 </xml>
