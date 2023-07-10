@@ -11,6 +11,7 @@ import (
 	"github.com/1319479809/mqtt_test/test_test"
 	"github.com/1319479809/mqtt_test/utils"
 	"github.com/1319479809/mqtt_test/utils/slog"
+	"github.com/gin-contrib/pprof"
 
 	"github.com/gin-gonic/gin"
 )
@@ -36,9 +37,10 @@ func main() {
 	slog.CpInfo("test", "test")
 
 	test1()
-	//getOutBoundTransferAdvisor()
+	getOutBoundTransferAdvisor()
 	r := gin.Default()
 	router.InitDeviceHttp(r)
+	pprof.Register(r)
 	err := r.Run(":" + utils.Cfg.Section("").Key("httpport").String())
 	if err != nil {
 		slog.Error("Start Server", err)
