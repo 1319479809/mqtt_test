@@ -24,6 +24,7 @@ func test1() {
 	test_test.XmlTest()                 //测试xml解析
 	test_test.TestRedis()               //测试连接redis
 	test_test.TestDb()                  //测试连接数据库
+	utils.RSA()                         //测试rsa加密
 }
 func main() {
 
@@ -35,9 +36,8 @@ func main() {
 		gin.SetMode(gin.DebugMode)
 	}
 	slog.CpInfo("test", "test")
-
-	test1()
-	getOutBoundTransferAdvisor()
+	//test1()
+	//getOutBoundTransferAdvisor()
 	r := gin.Default()
 	router.InitDeviceHttp(r)
 	pprof.Register(r)
